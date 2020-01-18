@@ -56,6 +56,9 @@ class drone:
 		# Multiwii Serial Protocol
 		# Hex value for MSP request
 		##############################
+		
+		
+		
 		self.BASIC="\x24\x4d\x3c\x00"	#MSG Send Header (to MultiWii)
 		self.MSP_IDT=self.BASIC+"\x64\x64"	#MSG ID: 100
 		self.MSP_STATUS=self.BASIC+"\x65\x65"	#MSG ID: 101
@@ -112,6 +115,8 @@ class drone:
 		###############################
 		# Initialize Global Variables
 		###############################
+		
+		
 		self.latitude = 0.0
 		self.longitude = 0.0
 		self.altitude = -0
@@ -156,6 +161,8 @@ class drone:
 	def stop(self):
 		self.started = False
 
+		
+		
 	#############################################################
 	# littleEndian(value)
 	#	receives: a parsed, hex data piece
@@ -165,6 +172,9 @@ class drone:
 	#	function: calls 2's compliment to convert to decimal
 	#	returns:  The integer value
 	#############################################################
+	
+	
+	
 	def littleEndian(self, value):
 		length = len(value)	# gets the length of the data piece
 		actual = ""
@@ -174,6 +184,8 @@ class drone:
 		intVal = self.twosComp(actual)	# sends the data to be converted from 2's compliment to int
 		return intVal				# returns the integer value
 
+	
+	
 	###################################################################
 	# twosComp(hexValue)
 	#	receives: the big endian hex value (correct format)
@@ -184,6 +196,9 @@ class drone:
 	#			(Flip all the bits left of the rightmost 1)
 	#	returns:  the integer value
 	###################################################################
+	
+	
+	
 	def twosComp(self, hexValue):
 		firstVal = int(hexValue[:1], 16)
 		if firstVal >= 8:	# if first bit is 1
@@ -233,6 +248,8 @@ class drone:
 	#	function: Do everything to ask the MW for data and save it on globals 
 	#	returns:  nothing
 	#############################################################
+	
+	
 	def askRC(self):
 		self.ser.flushInput()	# cleans out the serial port
 		self.ser.flushOutput()
